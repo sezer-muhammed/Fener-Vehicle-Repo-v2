@@ -20,7 +20,7 @@ First be sure that you have ROS2 Eloquent on your processing unit.
 # todo ADD ALL REQUIREMENTS 
 
 ```bash
-  git clone https://github.com/sezer-muhammed/Fener-Vehicle-Repo-v1.git
+  git clone https://github.com/sezer-muhammed/Fener-Vehicle-Repo-v2.git
   cd Fener-Vehicle-Repo-v2
   colcon build --symlink-install
 ```
