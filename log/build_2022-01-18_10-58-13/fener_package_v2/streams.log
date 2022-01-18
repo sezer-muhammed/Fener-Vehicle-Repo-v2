@@ -1,0 +1,20 @@
+[0.562s] Invoking command in '/home/sezer/FENER/ros2_fener_v2/src/fener_package_v2': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/fener_package_v2 build --build-base /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build install --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --record /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/install.log --single-version-externally-managed
+[0.740s] /usr/local/lib/python3.8/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.740s]   warnings.warn(
+[0.740s] /usr/local/lib/python3.8/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[0.740s]   warnings.warn(
+[0.759s] running egg_info
+[0.762s] writing manifest file '../../build/fener_package_v2/fener_package_v2.egg-info/SOURCES.txt'
+[0.762s] running build
+[0.762s] running build_py
+[0.762s] running install
+[0.763s] /usr/local/lib/python3.8/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.763s]   warnings.warn(
+[0.764s] running install_lib
+[0.764s] running install_data
+[0.765s] running install_egg_info
+[0.766s] removing '/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2-0.0.0-py3.8.egg-info' (and everything under it)
+[0.766s] Copying ../../build/fener_package_v2/fener_package_v2.egg-info to /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2-0.0.0-py3.8.egg-info
+[0.766s] running install_scripts
+[0.778s] writing list of installed files to '/home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/install.log'
+[0.792s] Invoked command in '/home/sezer/FENER/ros2_fener_v2/src/fener_package_v2' returned '0': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/fener_package_v2 build --build-base /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build install --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --record /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/install.log --single-version-externally-managed

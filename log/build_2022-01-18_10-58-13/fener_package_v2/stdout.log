@@ -1,0 +1,12 @@
+running egg_info
+writing manifest file '../../build/fener_package_v2/fener_package_v2.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/fener_package_v2/fener_package_v2.egg-info to /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/install.log'

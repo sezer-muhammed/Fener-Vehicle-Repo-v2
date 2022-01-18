@@ -1,0 +1,47 @@
+[0.588s] Invoking command in '/home/sezer/FENER/ros2_fener_v2/build/fener_package_v2': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --uninstall --editable --build-directory /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build
+[0.773s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.774s]   warnings.warn(
+[0.774s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[0.774s]   warnings.warn(
+[0.814s] running develop
+[0.814s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.814s]   warnings.warn(
+[0.817s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.817s]   warnings.warn(
+[0.910s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.23ubuntu1 is an invalid version and will not be supported in a future release
+[0.910s]   warnings.warn(
+[0.911s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.1.36ubuntu1 is an invalid version and will not be supported in a future release
+[0.911s]   warnings.warn(
+[0.911s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 1.13.1-unknown is an invalid version and will not be supported in a future release
+[0.911s]   warnings.warn(
+[0.911s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.3.11py3 is an invalid version and will not be supported in a future release
+[0.911s]   warnings.warn(
+[1.189s] Invoked command in '/home/sezer/FENER/ros2_fener_v2/build/fener_package_v2' returned '0': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --uninstall --editable --build-directory /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build
+[1.190s] Invoking command in '/home/sezer/FENER/ros2_fener_v2/src/fener_package_v2': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/fener_package_v2 build --build-base /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build install --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --record /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/install.log --single-version-externally-managed
+[1.524s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[1.524s]   warnings.warn(
+[1.524s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[1.524s]   warnings.warn(
+[1.572s] running egg_info
+[1.580s] writing manifest file '../../build/fener_package_v2/fener_package_v2.egg-info/SOURCES.txt'
+[1.580s] running build
+[1.580s] running build_py
+[1.580s] running install
+[1.580s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[1.580s]   warnings.warn(
+[1.588s] running install_lib
+[1.589s] creating /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2
+[1.590s] byte-compiling /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2/fener_arduino_comm.py to fener_arduino_comm.cpython-38.pyc
+[1.591s] byte-compiling /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2/__init__.py to __init__.cpython-38.pyc
+[1.591s] running install_data
+[1.592s] creating /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/share/ament_index
+[1.592s] creating /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/share/ament_index/resource_index
+[1.592s] creating /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/share/ament_index/resource_index/packages
+[1.592s] copying resource/fener_package_v2 -> /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/share/ament_index/resource_index/packages
+[1.592s] copying package.xml -> /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/share/fener_package_v2
+[1.592s] copying launch/fener_TF.launch.py -> /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/share/fener_package_v2
+[1.592s] running install_egg_info
+[1.594s] Copying ../../build/fener_package_v2/fener_package_v2.egg-info to /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages/fener_package_v2-0.0.0-py3.8.egg-info
+[1.595s] running install_scripts
+[1.624s] writing list of installed files to '/home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/install.log'
+[1.728s] Invoked command in '/home/sezer/FENER/ros2_fener_v2/src/fener_package_v2' returned '0': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/fener_package_v2 build --build-base /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build install --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --record /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/install.log --single-version-externally-managed

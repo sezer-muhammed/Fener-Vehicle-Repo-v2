@@ -1,0 +1,23 @@
+[0.583s] Invoking command in '/home/sezer/FENER/ros2_fener_v2/build/fener_package_v2': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --editable --build-directory /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build --no-deps install_data --install-dir /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2
+[0.764s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.764s]   warnings.warn(
+[0.764s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[0.764s]   warnings.warn(
+[0.801s] running develop
+[0.801s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.801s]   warnings.warn(
+[0.802s] /home/sezer/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.802s]   warnings.warn(
+[0.853s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.23ubuntu1 is an invalid version and will not be supported in a future release
+[0.853s]   warnings.warn(
+[0.853s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.1.36ubuntu1 is an invalid version and will not be supported in a future release
+[0.853s]   warnings.warn(
+[0.853s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 1.13.1-unknown is an invalid version and will not be supported in a future release
+[0.853s]   warnings.warn(
+[0.853s] /home/sezer/.local/lib/python3.8/site-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.3.11py3 is an invalid version and will not be supported in a future release
+[0.853s]   warnings.warn(
+[0.942s] running egg_info
+[0.945s] writing manifest file 'fener_package_v2.egg-info/SOURCES.txt'
+[0.968s] running build_ext
+[0.969s] running install_data
+[0.987s] Invoked command in '/home/sezer/FENER/ros2_fener_v2/build/fener_package_v2' returned '0': PYTHONPATH=/home/sezer/FENER/ros2_fener_v2/install/fener_package_v2/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2 --editable --build-directory /home/sezer/FENER/ros2_fener_v2/build/fener_package_v2/build --no-deps install_data --install-dir /home/sezer/FENER/ros2_fener_v2/install/fener_package_v2

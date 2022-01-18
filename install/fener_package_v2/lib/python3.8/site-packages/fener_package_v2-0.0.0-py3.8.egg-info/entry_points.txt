@@ -1,0 +1,3 @@
+[console_scripts]
+driver = fener_package_v2.fener_arduino_comm:main
+
