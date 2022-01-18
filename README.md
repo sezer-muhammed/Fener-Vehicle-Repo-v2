@@ -29,10 +29,10 @@ First be sure that you have ROS2 Eloquent on your processing unit.
 
 | Node             | Command                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| BNO055 IMU Data Publisher | ```ros2 run fener_package bno055_pub``` |
-| Lidar Data Publisher |  ```ros2 run fener_package lidar_pub``` |
-| Driver and Encoder |  ```ros2 run fener_package driver``` |
-| Solo Camera Publisher |  ```ros2 run fener_package solo_cam_pub``` |
+| BNO055 IMU Data Publisher | ```ros2 run fener_package_v2 bno055_pub``` |
+| Lidar Data Publisher |  ```ros2 run fener_package_v2 lidar_pub``` |
+| Driver and Encoder |  ```ros2 run fener_package_v2 driver``` |
+| Solo Camera Publisher |  ```ros2 run fener_package_v2 solo_cam_pub``` |
 
 ### BNO055 IMU Data Publisher
 
