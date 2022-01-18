@@ -21,7 +21,7 @@ First be sure that you have ROS2 Eloquent on your processing unit.
 
 ```bash
   git clone https://github.com/sezer-muhammed/Fener-Vehicle-Repo-v1.git
-  cd Fener-Vehicle-Repo-v1
+  cd Fener-Vehicle-Repo-v2
   colcon build --symlink-install
 ```
 
@@ -36,7 +36,7 @@ First be sure that you have ROS2 Eloquent on your processing unit.
 
 ### BNO055 IMU Data Publisher
 
-This Node publishes vehicles **oriantation** and **angular velocity** as **Float32MultiArray**.
+This Node publishes vehicles **IMU data** as **IMU**.
 
 Example *subscriber callback*
 ```python
@@ -46,12 +46,12 @@ def bno055_callback(self, msg):
 
 ### Lidar Data Publisher
 
-This Node publishes vehicles **Lidar data** as **Int32MultiArray**.
+This Node publishes vehicles **Lidar data** as **LaserScan**.
 
 Example *subscriber callback*
 ```python
 def lidar_callback(self, msg):
-    self.lidar_data = np.array(msg.data).reshape(-1, 2)
+    self.lidar_data = msg
 ```
 
 ### Driver and Encoder Node
