@@ -38,21 +38,11 @@ First be sure that you have ROS2 Eloquent on your processing unit.
 
 This Node publishes vehicles **IMU data** as **IMU**.
 
-Example *subscriber callback*
-```python
-def bno055_callback(self, msg):
-    self.bno055_data = msg.data
-```
 
 ### Lidar Data Publisher
 
 This Node publishes vehicles **Lidar data** as **LaserScan**.
 
-Example *subscriber callback*
-```python
-def lidar_callback(self, msg):
-    self.lidar_data = msg
-```
 
 ### Driver and Encoder Node
 
