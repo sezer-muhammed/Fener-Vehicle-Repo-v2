@@ -25,19 +25,15 @@ class MyNode(Node):
         self.ard = serial.Serial(port = "/dev/ttyACM0", baudrate = 230400, timeout = 1)
         time.sleep(2)
 
-        self.speed_mul = 0
         self.keyboard_packet = [0, 0, 0, 1]
         self.keyboard_commands = [0, 1, 2, 3]
-        self.aim_angle = 0
-        self.key_angle = 0
-        self.key_speed = 0
 
         self.old_encoder = np.array([0, 0, 0, 0])
         self.encoder = np.array([0, 0, 0, 0])
         self.total_encoder = np.array([0, 0, 0, 0], np.int64)
         self.total_diff = np.array([0, 0, 0, 0])
+
         self.bno055_heading = 0
-        self.keys = [0, 0, 0, 0, 0, 0, 0]
  
         self.encoder_msg = Int64MultiArray()
 

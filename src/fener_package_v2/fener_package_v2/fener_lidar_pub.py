@@ -19,24 +19,22 @@ class lidar_publisher(Node):
         self.lidar = RPLidar('/dev/ttyUSB0')
         self.lidar_publisher = self.create_publisher(LaserScan, PUBLISHERNAME, 2)
 
+        self.declare_parameter("range_min", 0.40)
+        self.declare_parameter("range_max", 4.0)
+        
         self.laser_msg = LaserScan()
         self.laser_msg.header.frame_id = "RP_Lidar"
-        self.laser_msg.angle_min = 0.0
+        self.laser_msg.angle_min = 0.0 #TODO Bu sanırım yanlış, rplidar 358 derecede mi ne başlıyor, ama bu lidarın araç üstündeki konumuna göre şekillenecek
         self.laser_msg.angle_max = 2 * np.pi
-        self.laser_msg.angle_increment = 2 * np.pi / 272
-        self.laser_msg.range_min = 0.40
-        self.laser_msg.range_max = 4.0
-
-
-
+        self.laser_msg.range_min = self.get_parameter("range_min").value
+        self.laser_msg.range_max = self.get_parameter("range_max").value
 
         self.get_logger().info("Lidar ready and node is alive")
 
         self.create_timer(1, self.timer_callback)
 
-        info = self.lidar.get_info()
         health = self.lidar.get_health()
-        self.get_logger().info(f"Lidars health {health} info {info}") 
+        self.get_logger().info(f"Lidars health {health}") 
 
 
 
@@ -45,7 +43,7 @@ class lidar_publisher(Node):
         for i, scan in enumerate(self.lidar.iter_scans()):
             scan = np.array(scan)[:, 1:] # 272 scan per turn
             self.laser_msg.ranges = (scan[:, 1] / 1000).tolist()
-
+            self.laser_msg.angle_increment = 2 * np.pi / scan.shape[0]
             self.laser_msg.header.stamp = self.get_clock().now().to_msg()
 
             last_measurement = time.time()
