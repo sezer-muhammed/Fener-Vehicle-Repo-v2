@@ -7,7 +7,6 @@ import time
 import cv2
 import numpy as np
 from sensor_msgs.msg import CompressedImage
-from vision.msgs
 from cv_bridge import CvBridge
 
 TARGET_SHAPE = [480, 360]
