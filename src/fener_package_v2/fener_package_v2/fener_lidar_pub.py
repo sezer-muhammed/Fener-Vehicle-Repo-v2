@@ -19,7 +19,7 @@ class lidar_publisher(Node):
         self.lidar = RPLidar('/dev/ttyUSB0')
         self.lidar_publisher = self.create_publisher(LaserScan, PUBLISHERNAME, 2)
 
-        self.declare_parameter("range_min", 0.40)
+        self.declare_parameter("range_min", 0.4)
         self.declare_parameter("range_max", 4.0)
         
         self.laser_msg = LaserScan()
