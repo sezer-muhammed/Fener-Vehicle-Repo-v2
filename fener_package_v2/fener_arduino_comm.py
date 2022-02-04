@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import rclpy
+import rclpy #import ROS2
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray, Int8MultiArray, Int64MultiArray
 from geometry_msgs.msg import Twist
