@@ -1,12 +1,13 @@
-import cv_bridge
 import rclpy
 from rclpy.node import Node
+from sensor_msgs.msg import Image
+
 import jetson.inference
 import jetson.utils
+
 import time
 import cv2
 import numpy as np
-from sensor_msgs.msg import CompressedImage, Image
 from cv_bridge import CvBridge
 
 TARGET_SHAPE = [480, 360]
@@ -37,7 +38,7 @@ class solo_cam_publisher(Node):
         self.camera_left = jetson.utils.gstCamera(self.img_shape[0], self.img_shape[1], "csi://0")
         self.camera_left.Open()
 
-        self.bridge = cv_bridge.CvBridge()
+        self.bridge = CvBridge()
         self.get_logger().info("Camera ready and node is alive with two cameras")
 
         self.create_timer(1/60, self.capture_images)
