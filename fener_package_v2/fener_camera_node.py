@@ -35,7 +35,7 @@ class solo_cam_publisher(Node):
     self.bridge = cv_bridge.CvBridge()
     self.get_logger().info("Camera ready and node is alive")
 
-    if (self.get_parameter("publish_image").value):
+    if (self.get_parameter("publish_image").value): #her türlü kamera görüntüsü alsın, publish etmek isterse eder bunu düzenle
         self.create_timer(1/20, self.publish_image)
 
     if (self.get_parameter("detect_objects").value):
