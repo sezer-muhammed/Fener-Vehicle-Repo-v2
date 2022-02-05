@@ -9,6 +9,7 @@ import time
 import serial
 from os import system
 
+
 NAMESPACE = "Arduino"
 NODENAME = "Communication"
 PUBLISHERNAME = "encoder_data"
