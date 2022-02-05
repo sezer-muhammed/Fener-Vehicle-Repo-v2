@@ -14,17 +14,17 @@ class BNO055_sensor(Node):
     def __init__(self):
         super().__init__(NODENAME, namespace = NAMESPACE)
 
-        self.i2c = board.I2C()
-        self.sensor = adafruit_bno055.BNO055_I2C(self.i2c)
+        self.i2c = board.I2C() #(1)
+        self.sensor = adafruit_bno055.BNO055_I2C(self.i2c) #(1)
          
-        self.imu_res = Imu()
-        self.imu_res.header.frame_id = "BNO055"
+        self.imu_res = Imu() #(2)
+        self.imu_res.header.frame_id = "BNO055" #(3)
 
-        self.bno_data_publisher = self.create_publisher(Imu, PUBLISHERNAME, 2)
+        self.bno_data_publisher = self.create_publisher(Imu, PUBLISHERNAME, 2) #(4)
     
-        self.create_timer(1/20, self.timer_callback)
+        self.create_timer(1/20, self.timer_callback) #(5)
 
-        self.get_logger().info("BNO055 Started")
+        self.get_logger().info("BNO055 Started") #(6)
     
         
     def quaternion_value(self):
@@ -48,13 +48,13 @@ class BNO055_sensor(Node):
     
     def timer_callback(self):
         
-        self.quaternion_value()
-        self.linear_acceleration_value()
-        self.angular_velocity_value()
+        self.quaternion_value() #(1)
+        self.linear_acceleration_value() #(2)
+        self.angular_velocity_value() #(3)
 
-        self.imu_res.header.stamp = self.get_clock().now().to_msg()
+        self.imu_res.header.stamp = self.get_clock().now().to_msg() #(4)
         
-        self.bno_data_publisher.publish(self.imu_res)
+        self.bno_data_publisher.publish(self.imu_res) #(5)
 
 
   
