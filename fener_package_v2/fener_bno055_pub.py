@@ -29,10 +29,10 @@ class BNO055_sensor(Node):
         
     def quaternion_value(self):
 
-        self.imu_res.orientation.x = self.sensor.quaternion[0]
-        self.imu_res.orientation.y = self.sensor.quaternion[1]
-        self.imu_res.orientation.z = self.sensor.quaternion[2]
-        self.imu_res.orientation.w = self.sensor.quaternion[3] #w değeri doğru yerden mi çekiliyor kontrol et
+        self.imu_res.orientation.w = self.sensor.quaternion[0]
+        self.imu_res.orientation.x = self.sensor.quaternion[1]
+        self.imu_res.orientation.y = self.sensor.quaternion[2]
+        self.imu_res.orientation.z = self.sensor.quaternion[3]
     
     def linear_acceleration_value(self):
 
