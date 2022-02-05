@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from rplidar import RPLidar
 import numpy as np
 import time
@@ -24,7 +25,7 @@ class lidar_publisher(Node):
         
         self.laser_msg = LaserScan()
         self.laser_msg.header.frame_id = "RP_Lidar"
-        self.laser_msg.angle_min = 0.0 #TODO Bu sanırım yanlış, rplidar 358 derecede mi ne başlıyor, ama bu lidarın araç üstündeki konumuna göre şekillenecek
+        self.laser_msg.angle_min = 0.0 
         self.laser_msg.angle_max = 2 * np.pi
         self.laser_msg.range_min = self.get_parameter("range_min").value
         self.laser_msg.range_max = self.get_parameter("range_max").value
@@ -34,7 +35,7 @@ class lidar_publisher(Node):
         self.create_timer(1, self.timer_callback)
 
         health = self.lidar.get_health()
-        self.get_logger().info(f"Lidars health {health}") 
+        self.get_logger().info(f"Lidars health {health}") ro
 
 
 
