@@ -18,12 +18,15 @@ setup(
     zip_safe=True,
     maintainer='sezer',
     maintainer_email='e230531@metu.edu.tr',
-    description='TODO: Package description',
+    description='Launch and Run files for Fener Research Kit',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'driver = fener_package_v2.fener_arduino_comm:main',
+        	'vehicle_driver = fener_package_v2.fener_arduino_comm:main',
+            'bno055_publisher = fener_package_v2.fener_bno055_pub:main',
+            'camera_node = fener_package_v2.fener_camera_node:main',
+            'lidar_publisher = fener_package_v2.fener_lidar_pub:main',
         ],
     },
 )

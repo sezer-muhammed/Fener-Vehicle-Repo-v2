@@ -35,7 +35,7 @@ class lidar_publisher(Node):
         self.create_timer(1, self.timer_callback)
 
         health = self.lidar.get_health()
-        self.get_logger().info(f"Lidars health {health}") ro
+        self.get_logger().info(f"Lidars health {health}")
 
 
 
