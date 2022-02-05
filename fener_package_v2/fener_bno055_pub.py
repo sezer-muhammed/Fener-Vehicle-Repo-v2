@@ -3,11 +3,11 @@ import rclpy
 from rclpy.node import Node
 import board
 import adafruit_bno055
-from sensor_msgs.msg import Imu
+from sensor_msgs.msg import Imu #gerekli kütüphaneleri yükle
 
 NAMESPACE = "bno055"
 NODENAME = "BNO055_sensor"
-PUBLISHERNAME = "bno_data"
+PUBLISHERNAME = "bno_data" #define edilmesi istenen değerler
 
 
 class BNO055_sensor(Node):
@@ -18,6 +18,8 @@ class BNO055_sensor(Node):
         self.sensor = adafruit_bno055.BNO055_I2C(self.i2c)
          
         self.imu_res = Imu()
+        self.imu_res.header.frame_id = "BNO055"
+
         self.bno_data_publisher = self.create_publisher(Imu, PUBLISHERNAME, 2)
     
         self.create_timer(1/20, self.timer_callback)
@@ -30,7 +32,7 @@ class BNO055_sensor(Node):
         self.imu_res.orientation.x = self.sensor.quaternion[0]
         self.imu_res.orientation.y = self.sensor.quaternion[1]
         self.imu_res.orientation.z = self.sensor.quaternion[2]
-        self.imu_res.orientation.w = self.sensor.quaternion[3]
+        self.imu_res.orientation.w = self.sensor.quaternion[3] #w değeri doğru yerden mi çekiliyor kontrol et
     
     def linear_acceleration_value(self):
 
@@ -49,6 +51,8 @@ class BNO055_sensor(Node):
         self.quaternion_value()
         self.linear_acceleration_value()
         self.angular_velocity_value()
+
+        self.imu_res.header.stamp = self.get_clock().now().to_msg()
         
         self.bno_data_publisher.publish(self.imu_res)
 
