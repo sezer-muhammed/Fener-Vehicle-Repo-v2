@@ -1,16 +1,16 @@
-import rclpy
-from rclpy.node import Node
-from sensor_msgs.msg import Image
-from vision_msgs.msg import Detection2D, Detection2DArray, BoundingBox2D, ObjectHypothesisWithPose
-from geometry_msgs.msg import Pose2D
+import rclpy #ROS2 Python kütüphanesi
+from rclpy.node import Node #ROS2'nin Node objesi
+from sensor_msgs.msg import Image #Sensör mesajlarından istenen obje veya objeler
+from vision_msgs.msg import Detection2D, Detection2DArray, BoundingBox2D, ObjectHypothesisWithPose #Görüntü mesajlarından istenen obje veya objeler
+from geometry_msgs.msg import Pose2D #Geometri mesajlarından istenen obje veya objeler
 
-import jetson.inference
-import jetson.utils
+import jetson.inference #Yapay Zeka işlemleri için Jetson inference kütüphanesi
+import jetson.utils #GPU üzerinde görüntü ve kamera işlemleri için Jetson utils kütüphanesi
 
-import time
-import cv2
-import numpy as np
-from cv_bridge import CvBridge
+import time #Süre ölçme ve uyku işlemleri için time kütüphanesi
+import cv2 #CPU üzerinde daha komplex görüntü işleme işlemleri OpenCV kütüphanesi
+import numpy as np #NumPY kütüphanesi
+from cv_bridge import CvBridge #OpenCV görselini ROS2 Image formatına çevirmek için CvBridge objesi
 
 """
 Image publish, detection ve tracking kapalı iken de çalışabilir hale getirilmeli
@@ -20,51 +20,49 @@ Tracking callbak'i yazılmalı
 """
 
 
-TARGET_SHAPE = [480, 360]
-NAMESPACE = "csi_cam"
-NODENAME = "image_node"
-IMAGE_PUBLISHERNAME = "dominant_image_raw"
-DETECTION_PUBLISHERNAME = "detections"
-TRACKING_PUBLISHERNAME = "tracked_detection"
-DOMINANT_CAMERA = "Right"
+TARGET_SHAPE = [480, 360] #Paylaşılacak görüntünün çözünürlüğü
+NAMESPACE = "csi_cam" #Bu Nod için kullanılacak isim uzayı
+NODENAME = "image_node" #Bu Nod için kullanılacak isim
+IMAGE_PUBLISHERNAME = "dominant_image_raw" #Görüntünün paylaşılacağı başlığın ismi
+DETECTION_PUBLISHERNAME = "detections" #Model tespitlerinin paylaşılacağı başlığın ismi
+TRACKING_PUBLISHERNAME = "tracked_detection" #Takip edilen objenin paylaşılacağı başlığın ismi
+DOMINANT_CAMERA = "Right" #Görüntü paylaşırken ve konumu bulunurken referans alınacak kamera
 
 class solo_cam_publisher(Node):
     def __init__(self):
-        super().__init__(NODENAME, namespace = NAMESPACE)
+        super().__init__(NODENAME, namespace = NAMESPACE) #Nod objesini verilen nod ismi ve isim uzayı ile başlat
 
-        self.declare_parameter("publish_image", False)
-        self.declare_parameter("image_overlay", True)
-        self.declare_parameter("detect_objects", False)
-        self.declare_parameter("track_object", False)
-        self.declare_parameter("estimate_object_id", -1)
-        self.declare_parameter("image_width", 1640)
-        self.declare_parameter("image_height", 922)
+        self.declare_parameter("publish_image", False) #Görüntü paylaşımını aktive eden parametre
+        self.declare_parameter("image_overlay", True) #Paylaşılan görüntüde model tespitlerinin çizdirilmesini 
+                                                      #aktive eden parametre
+        self.declare_parameter("detect_objects", False) #Obje tespitleri paylaşma modunu aktive eden parametre
+        self.declare_parameter("track_object", False) #Objeyi takip etme modunu aktive eden parametre
+        self.declare_parameter("estimate_object_id", -1) #Takip edilmesi istenen objenin ID'si
+        self.declare_parameter("image_width", 1640) #Kameradan alınacak görüntünün yatay çözünürlüğü
+        self.declare_parameter("image_height", 922) #kameradan alınacak görüntünün dikey çözünürlüğü
 
 
-        if self.get_parameter("detect_objects").value + self.get_parameter("track_object").value == 2:
-            self.get_logger().info(f"detect_objects and track_object cannot be online at the same time.")
+        if self.get_parameter("detect_objects").value + self.get_parameter("track_object").value == 2: #Aynı anda obje tespiti ve takibi isteniyorsa
+            self.get_logger().info(f"detect_objects and track_object cannot be online at the same time.") #Hata mesajını gir ve kodu kapat
             exit()
 
-        self.get_logger().info(f"Image Publisher: {1} | Detection: {1} | Tracking: {1}")
+        self.img_shape = [self.get_parameter("image_width").value, self.get_parameter("image_height").value] #Kameradan alınacak görüntü çözünürlüğünü tutan liste
 
-        self.img_shape = [self.get_parameter("image_width").value, self.get_parameter("image_height").value]
+        self.camera_right = jetson.utils.gstCamera(self.img_shape[0], self.img_shape[1], "csi://1") #1 numaralı CSI Kameradan verilen çözünürlükte görüntü alan kamera objesini oluştur
+        self.camera_right.Open() #Kamera objesini başlat
 
-        self.camera_right = jetson.utils.gstCamera(self.img_shape[0], self.img_shape[1], "csi://1")
-        self.camera_right.Open()
+        self.camera_left = jetson.utils.gstCamera(self.img_shape[0], self.img_shape[1], "csi://0") #0 numaralı CSI Kameradan verilen çözünürlükte görüntü alan kamera objesini oluştur
+        self.camera_left.Open() #Kamera objesini başlat
 
-        self.camera_left = jetson.utils.gstCamera(self.img_shape[0], self.img_shape[1], "csi://0")
-        self.camera_left.Open()
+        self.bridge = CvBridge() #OpenCV ve ROS2 Image mesaj tipi için dönüşüm objesini oluştur
+        self.get_logger().info("Camera ready and node is alive with two cameras") #Tüm işlemler başarı ile yapıldıysa Loglara bu durumu kaydet
 
-        self.bridge = CvBridge()
-        self.get_logger().info("Camera ready and node is alive with two cameras")
+        if (self.get_parameter("publish_image").value): #Görüntü paylaşımı isteniyorsa...
+            self.image_publisher = self.create_publisher(Image, IMAGE_PUBLISHERNAME, 2) #Image veri tipini sabitlerde tanımlanmış başlık ismi ile buffer boyutu 2 olacak şekilde paylaş
 
-        if (self.get_parameter("publish_image").value):
-            self.image_publisher = self.create_publisher(Image, IMAGE_PUBLISHERNAME, 2)
-
-        if (self.get_parameter("detect_objects").value):
-
-            self.left_detections_publisher = self.create_publisher(Detection2DArray, "left_camera/" + DETECTION_PUBLISHERNAME, 2)
-            self.right_detections_publisher = self.create_publisher(Detection2DArray, "right_camera/" + DETECTION_PUBLISHERNAME, 2)
+        if (self.get_parameter("detect_objects").value): #Obje tespiti isteniyorsa...
+            self.left_detections_publisher = self.create_publisher(Detection2DArray, "left_camera/" + DETECTION_PUBLISHERNAME, 2) #Sol kamera için Detection2DArray veri tipini sabitlerde tanımlanmış başlık ismi ile buffer boyutu 2 olacak şekilde paylaş
+            self.right_detections_publisher = self.create_publisher(Detection2DArray, "right_camera/" + DETECTION_PUBLISHERNAME, 2) #Sağ kamera için Detection2DArray veri tipini sabitlerde tanımlanmış başlık ismi ile buffer boyutu 2 olacak şekilde paylaş
 
             self.network = jetson.inference.detectNet(argv=[
             '--model=/home/fener/fener_vehicle/src/Fener-Vehicle-Repo-v2/fener_package_v2/ssd-mobilenet.onnx', 
