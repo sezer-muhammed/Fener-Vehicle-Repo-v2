@@ -54,7 +54,7 @@ class MyNode(Node):
     def timer_callback(self):
         
         self.keyboard_packet[0:3] = [self.key_speed, min(3000, max(0, self.key_angle + (self.aim_angle - self.bno055_heading))), self.bno055_heading%360]
-        
+        print(self.keyboard_packet[:2])
         self.old_encoder = self.encoder
         self.encoder = self.send_to_arduino(self.keyboard_commands, self.keyboard_packet)
 
@@ -89,7 +89,7 @@ class MyNode(Node):
 
     def keyboard_callback(self, msg):
         self.aim_angle = self.bno055_heading
-        self.key_speed = int(msg.linear.x * KEY_SPEED_COEFF)
+        self.key_speed = int(msg.linear.x * KEY_SPEED_COEFF + 2048)
         self.key_angle = int(1500 - msg.angular.z * KEY_ANGLE_MULTIPLIER) # mid is 1500
         
 
