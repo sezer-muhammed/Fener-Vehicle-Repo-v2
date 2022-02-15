@@ -13,10 +13,7 @@ import numpy as np #NumPY kütüphanesi
 from cv_bridge import CvBridge #OpenCV görselini ROS2 Image formatına çevirmek için CvBridge objesi
 
 """
-Image publish, detection ve tracking kapalı iken de çalışabilir hale getirilmeli
-- imagepublish açık olan tek parametre mi diye kontol edilip ardından tek ise publisher fonksiyonu çağırılabilir, hem bu durumda çözünürlüğü de arttırılmış olarak paylaşım yapılır
-
-Tracking callbak'i yazılmalı
+TODO Pür kamera paylaşımı
 """
 
 
