@@ -37,9 +37,12 @@ class lidar_publisher(Node):
         ThisTurn = {"max_angle":max_angle, "min_angle":min_angle, "angle_increment":angle_increment, "scan_time":scan_time, "range_min":range_min, "range_max":range_max, "ranges":ranges}
         self.history.append(ThisTurn)
         
-        if len(self.history) == 30:
+        print(len(self.history))
+
+        if len(self.history) == 360:
             with open("laser_data.pickle", "wb") as fp:
                 pickle.dump(self.history, fp)
+            exit()
 
 
 def main(args=None):
